@@ -1,14 +1,14 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow w-100 rounded">
-      <div class="container-fluid d-flex justify-content-between w-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow rounded">
+      <div class="container-fluid d-flex justify-content-between">
         <!-- Chat Brand -->
-        <a class="navbar-brand fw-bold" href="#">Chat</a>
+        <a class="navbar-brand fw-semibold ps-2 " href="#">Chat</a>
   
         <!-- Breadcrumb-like Navigation -->
         <span class="navbar-text d-flex align-items-center">
-          <i class="fs-5 bi bi-house-door-fill pe-2 text-secondary"></i>
-          <span class="text-muted"> / </span>
-          <small class="chat-colored px-2 ms-3 fw-semibold">Chat</small>
+          <i class="bi bi-house"></i>
+          <span class="fw-bold mx-2"> / </span>
+          <small class="chat-colored p-1 rounded">Chat</small>
         </span>
       </div>
     </nav>
@@ -25,10 +25,8 @@
   
   /* Chat Highlight */
   .chat-colored {
-    background: rgb(169, 180, 247);
-    color: rgb(57, 54, 139);
-    border-radius: 8px;
-    padding: 5px 10px;
+    background: rgb(211, 217, 255);
+    color: rgb(93, 90, 183);
   }
   
   </style>

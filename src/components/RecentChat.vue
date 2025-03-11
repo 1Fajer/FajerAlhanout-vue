@@ -1,98 +1,118 @@
 <template>
-  
-    <div class="recent-chat-container border-end px-3" style="background-color: white;">
-      <div class="list-group-item top-chat">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-start">
-            <div class="avatar-container position-relative me-2">
-              <img :src="topChat.avatar" class="rounded-circle avatar" alt="User Avatar" />
-              <span class="status-indicator" :class="topChat.status"></span>
-            </div>
-            <div class="d-flex flex-column">
-              <h4 class="mb-1 top-chat-name">{{ topChat.name }}</h4>
-              <p class="text-muted fw-lighter mb-2 top-chat-job">{{ topChat.job }}</p>
-            </div>
+  <div class="recent-chat-container border-end bg-white position-relative">
+    <div class="top-chat">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-start mt-3 mx-3">
+          <div class="avatar-container position-relative me-2">
+            <img :src="topChat.avatar" class="rounded-circle avatar" alt="User Avatar" />
+            <span class="status-indicator" :class="topChat.status"></span>
           </div>
-          <i class="bi bi-three-dots-vertical dots-menu"></i>
+          <div class="d-flex flex-column mb-2 px-1">
+            <h6 class="mb-1 fw-semibold top-chat-name" style="font-size:normal;">{{ topChat.name }}</h6>
+            <small class="text-muted top-chat-job" style="font-size:x-small;">{{ topChat.job }}</small>
+          </div>
         </div>
-        <div class="search-bar">
-          <i class="bi bi-search search-icon"></i>
-          <input type="text" v-model="searchQuery" class="form-control" placeholder="Search contact" />
-        </div>
-        <p class="text-muted my-2 toggle-chats" @click="toggleChats">
+        <i class="bi bi-three-dots-vertical dots-menu text-dark pe-2 "></i>
+      </div>
+      <!-- Search Bar with Icon Inside -->
+      <div class="d-flex justify-content-between align-items-center px-3 position-relative border rounded mx-4  mt-3">
+        <input
+          v-model="searchQuery"
+          type="text"
+          class="form-control form-control-sm border-0 pe-5"
+          placeholder="Search contacts"
+          aria-label="Search contacts"
+        />
+        <i class="bi bi-search"></i>
+      </div>
+      
+      <!-- Modified Recent Chats Toggle -->
+      <div class="d-flex align-items-center px-3 pt-5 position-relative">
+        <p class="text-muted toggle-chats m-0 me-2" style="font-size: small;">
           Recent Chats
-          <i class="bi" :class="showChats ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </p>
+        <p class="toggle-chats m-0" @click="toggleSortMenu">
+          <i class="bi" :class="showSortMenu ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </p>
+        
+        <!-- Sort Menu -->
         <transition name="fade">
-          <div v-if="showChats" class="list-group">
-            <a v-for="chat in filteredChats" :key="chat.id" href="#" class="list-group-item list-group-item-action" :class="{ 'list-group-item-secondary': chat.active }">
-              <div class="d-flex w-100 align-items-center ">
-                <div class="avatar-container position-relative">
-                  <img :src="chat.avatar" class="rounded-circle avatar" alt="User Avatar" />
-                  <span class="status-indicator" :class="chat.status"></span>
-                </div>
-                <div class="w-100">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="chat-name">{{ chat.name }}</h5>
-                    <small class="chat-time">{{ chat.time }}</small>
-                  </div>
-                  <p class="chat-message">{{ chat.message }}</p>
-                </div>
-              </div>
-            </a>
+          <div v-if="showSortMenu" class="sort-menu position-absolute">
+            <button class="btn btn-sm btn-light text-muted" @click="handleSort('name')">Sort by Name</button>
+            <button class="btn btn-sm btn-light text-muted" @click="handleSort('date')">Sort by Date</button>
+            <button class="btn btn-sm btn-light text-muted" @click="handleSort('unread')">Mark All Unread</button>
           </div>
         </transition>
       </div>
+      
+      <transition name="fade">
+        <div>
+          <div v-for="chat in filteredChats" :key="chat.id" class="py-1 d-flex align-items-center">
+            <div class="avatar-container position-relative mx-3">
+              <img :src="chat.avatar" class="rounded-circle avatar" alt="User Avatar" />
+              <span class="status-indicator" :class="chat.status"></span>
+            </div>
+            <div class="flex-grow-1 my-2">
+              <div class="d-flex justify-content-between">
+                <small class="me-1 fw-semibold" style="font-size:small;">{{ chat.name }}</small>
+                <p class="text-muted" style="font-size: xx-small; padding-right:4%;">{{ chat.time }}</p>
+              </div>
+              <small class="text-muted d-block" style="font-size:x-small;">{{ chat.message }}</small>
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
-  
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      showChats: true,
+      showSortMenu: false,
       searchQuery: "",
       topChat: {
-        name: "Fajer Saleh",
+        name: "Mathew Anderson",
         job: "Marketing Director",
-        avatar: `https://api.dicebear.com/9.x/lorelei/svg?backgroundType=gradientLinear,solid&seed=TopChat`,
+        avatar: require('@/assets/userimg.svg'),
         status: "available",
       },
       chats: [
-        { id: 1, name: "Alanoud", time: "3 min ago", message: "Hey! How are you?", status: "available", active: true },
-        { id: 2, name: "Bedour", time: "2 hrs ago", message: "Are you free tomorrow?", status: "busy", active: false },
-        { id: 3, name: "Amirah", time: "5 hrs ago", message: "Let's catch up this weekend!", status: "idle", active: false },
-        { id: 4, name: "Maryam", time: "1 day ago", message: "I sent you the notes.", status: "available", active: false },
-        { id: 5, name: "Salamh", time: "2 days ago", message: "Did you watch the new episode?", status: "busy", active: false },
-        { id: 6, name: "Faten", time: "3 days ago", message: "Thanks for the help yesterday!", status: "idle", active: false },
+        { id: 1, name: "Michell Flintoff", time: "25 Minutes", message: "you: Hey! How are you?", status: "available", active: true, avatar: require('@/assets/id1.svg') },
+        { id: 2, name: "Bianca Anderson", time: "30 Minutes", message: "Are you free tomorrow?", status: "busy", active: false, avatar: require('@/assets/id26.svg') },
+        { id: 3, name: "Andrew Johnson", time: "2 hours", message: "Let's catch up this weekend!", status: "idle", active: false, avatar: require('@/assets/id3.svg') },
+        { id: 4, name: "Mark Strokes", time: "5 days", message: "I sent you the notes.", status: "available", active: false, avatar: require('@/assets/id4.svg') },
+        { id: 6, name: "Bianca Anderson", time: "30 Minutes", message: "Thanks for the help yesterday!", status: "idle", active: false, avatar: require('@/assets/id26.svg') },
       ],
     };
   },
   computed: {
-    chatsWithAvatars() {
-      return this.chats.map(chat => ({
-        ...chat,
-        avatar: `https://api.dicebear.com/9.x/lorelei/svg?backgroundType=gradientLinear,solid&seed=${encodeURIComponent(chat.name)}`,
-      }));
-    },
     filteredChats() {
-      return this.chatsWithAvatars.filter(chat =>
+      return this.chats.filter(chat =>
         chat.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     },
   },
   methods: {
-    toggleChats() {
-      this.showChats = !this.showChats;
+    toggleSortMenu() {
+      this.showSortMenu = !this.showSortMenu;
     },
-  },
+    handleSort(type) {
+      if (type === 'name') {
+        this.chats.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (type === 'date') {
+        this.chats.sort((a, b) => new Date(b.time) - new Date(a.time));
+      } else if (type === 'unread') {
+        this.chats.forEach(chat => chat.active = true);
+      }
+      this.showSortMenu = false;
+    }
+  }
 };
 </script>
 
 <style scoped>
-
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease-in-out;
 }
@@ -100,41 +120,15 @@ export default {
   opacity: 0;
 }
 
-.recent-chat-container {
-  width: 100%;
-  max-width: 100%;
-  padding: 0.7rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-size: 0.85rem;
-  background: white;
-}
-
-.top-chat {
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0.8rem;
-  max-width: 100%;
-  width: 100%;
-
-}
-
-.avatar-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
 .avatar {
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .status-indicator {
   position: absolute;
-  bottom: 0.2rem;
-  right: 0.2rem;
+  bottom: 0;
+  right: 0;
   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
@@ -145,61 +139,40 @@ export default {
 .busy { background-color: red; }
 .idle { background-color: yellow; }
 
-.top-chat-name {
-  font-size: 0.85rem;
-}
-.top-chat-job {
-  font-size: 0.75rem;
-}
-
-.dots-menu {
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 0.3rem;
-  border: 1px solid #ccc;
-  padding: 0.3rem;
+.sort-menu {
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 8px;
+  width: fit-content;
 }
 
-.search-icon {
-  font-size: 1rem;
-  color: gray;
-  margin-right: 0.5rem;
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
+.sort-menu button {
+  text-align: left;
   width: 100%;
-  font-size: 0.85rem;
+  display: block;
+  padding: 6px 12px;
+}
+
+.sort-menu button:hover {
+  background-color: #f6f7f9;
+}
+
+.py-1.d-flex:hover {
+  background-color: #F6F7F9;
 }
 
 .toggle-chats {
-  font-size: 0.85rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.list-group-item {
-  padding: 0.7rem;
-  font-size: 0.85rem;
-}
-
-.chat-name {
+.toggle-chats i {
+  margin-left: 5px;
   font-size: 0.8rem;
-}
-.chat-time {
-  font-size: 0.7rem;
-  color: gray;
-  font-weight: normal;
-}
-.chat-message {
-  font-size: 0.7rem;
-  font-weight: normal;
-  color: #555;
 }
 </style>

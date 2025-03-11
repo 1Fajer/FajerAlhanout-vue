@@ -1,43 +1,40 @@
 <template>
-  <div class="sidebar d-flex flex-column">
+  <div class="d-flex flex-column min-vh-100 p-3 bg-white" style="font-size: 0.85rem;">
     <!-- Logo Section -->
-    <div class="logo-section d-flex align-items-center justify-content-center">
-      <img src="@/assets/logo.png" alt="Logo" class="logo">
-      <p class="text-dark ms-2">HI TEAM</p>
+    <div class="d-flex align-items-center justify-content-start">
+      <img src="@/assets/logo.png" alt="Logo" class="rounded-circle" width="60rem" height="60rem">
+      <p class="ms-2 mb-0">HI TEAM</p>
     </div>
-
-    <hr class="divider">
-
     <!-- Menu Items -->
-    <nav class="nav flex-column"> 
-      <a href="#" class="menu-item active">
-        <i class="bi bi-house-door"></i> Dashboard
+    <nav class="nav flex-column gap-1">
+      <a href="#" class="nav-link active  text-light rounded shadow " style="background-color: #635BFF;">
+        <i class="bi bi-house-door me-1"></i> Dashboard
       </a>
-      <a href="#" class="menu-item"><i class="bi bi-box"></i> Orders</a>
-      <a href="#" class="menu-item"><i class="bi bi-people"></i> Passengers</a>
-      <a href="#" class="menu-item"><i class="bi bi-truck"></i> Captains</a>
-      <a href="#" class="menu-item"><i class="bi bi-grid"></i> Categories</a>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-box me-1" style="color: #98A4AE;"></i> Orders</a>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-people me-1" style="color: #98A4AE;"></i> Passengers</a>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-truck me-1" style="color: #98A4AE;"></i> Captains</a>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-grid me-1" style="color: #98A4AE;"></i> Categories</a>
       
-      <hr class="divider">
-      <a href="#" class="menu-item"><i class="bi bi-file-earmark-text"></i> Settlement</a>
-      <hr class="divider">
+      <hr>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-file-earmark-text me-1" style="color: #98A4AE;"></i> Settlement</a>
+      <hr>
       
-      <a href="#" class="menu-item"><i class="bi bi-chat-dots"></i> Contact</a>
-      <a href="#" class="menu-item"><i class="bi bi-star"></i> Reviews</a>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-chat-dots me-1" style="color: #98A4AE;"></i> Contact</a>
+      <a href="#" class="nav-link text-dark rounded"><i class="bi bi-star me-1" style="color: #98A4AE;"></i> Reviews</a>
       
-      <hr class="divider">
+      <hr>
 
       <!-- Permissions with Toggle -->
-      <a href="#" class="menu-item" @click="togglePermissions">
-        <i class="bi bi-shield-lock"></i> Permissions   
-        <i class="bi" :class="permissionsOpen ? 'bi-chevron-up' : 'bi-chevron-down'" style="margin-left:auto;"></i>
+      <a href="#" class="nav-link text-dark d-flex align-items-center justify-content-between rounded" @click="togglePermissions">
+        <span><i class="bi bi-shield-lock me-1" style="color: #98A4AE;"></i> Permissions</span>  
+        <i class="bi" :class="permissionsOpen ? 'bi-chevron-up' : 'bi-chevron-down'" style="color: #98A4AE;"></i>
       </a>
 
-      <div v-if="permissionsOpen" class="submenu">
-        <a href="#" class="menu-item"><i class="bi bi-translate"></i> Translation</a>
-        <a href="#" class="menu-item"><i class="bi bi-camera-video"></i> Education Video</a>
-        <a href="#" class="menu-item"><i class="bi bi-gear"></i> Settings</a>
-        <a href="#" class="menu-item"><i class="bi bi-layout-text-window"></i> Content</a>
+      <div v-if="permissionsOpen" class="ms-0">
+        <a href="#" class="nav-link text-dark rounded ps-3"><i class="bi bi-translate me-1" style="color: #98A4AE;"></i> Translation</a>
+        <a href="#" class="nav-link text-dark rounded ps-3"><i class="bi bi-camera-video me-1" style="color: #98A4AE;"></i> Education Video</a>
+        <a href="#" class="nav-link text-dark rounded ps-3"><i class="bi bi-gear me-1" style="color: #98A4AE;"></i> Settings</a>
+        <a href="#" class="nav-link text-dark rounded ps-3"><i class="bi bi-layout-text-window me-1" style="color: #98A4AE;"></i> Content</a>
       </div>
     </nav>
   </div>
@@ -59,73 +56,13 @@ export default {
 </script>
 
 <style scoped>
-
-.sidebar {
-  width: auto; /* Increased width */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px; /* Smaller padding */
-  background: white;
+a:hover {
+  background: #635BFF;
+  color: white !important;
+  box-shadow: var(--bs-shadow);
 }
 
-.logo {
-  width: 40px; /* Smaller logo size */
-  height: 40px;
+a:hover i {
+  color: white !important;
 }
-
-/* Divider */
-.divider {
-  border-color: #3b3838;
-  width: 90%;
-  margin: 8px auto; /* Reduced margin */
-}
-
-/* Menu Item */
-.menu-item {
-  display: flex;
-  align-items: center;
-  color: #000000;
-  padding: 5px; /* Smaller padding */
-  font-size: 12px; /* Smaller font size */
-  margin: 4px; /* Reduced margin */
-  text-decoration: none;
-  border-radius: 8px; /* Smaller border radius */
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.menu-item i {
-  margin-right: 10px; /* Smaller icon spacing */
-  font-size: 16px; /* Smaller icon size */
-  color: #8f8f8f;
-}
-
-/* Hover */
-.menu-item:hover {
-  background-color: #d9cfeb;
-  color: #000000;
-}
-
-/* Active */
-.menu-item.active {
-  background-color: #8964ce;
-  color: white;
-}
-
-.menu-item.active i {
-  color: white;
-}
-
-.submenu {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.submenu .menu-item {
-  padding-left: 16px; /* Smaller padding for submenu items */
-  font-size: 12px; /* Smaller submenu font size */
-}
-
 </style>
