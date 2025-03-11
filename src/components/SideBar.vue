@@ -62,6 +62,7 @@ a:hover {
   box-shadow: var(--bs-shadow);
 }
 
+
 a:hover i {
   color: white !important;
 }

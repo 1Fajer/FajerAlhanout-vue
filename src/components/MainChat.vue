@@ -32,24 +32,24 @@
             <div class="align-item-start"><img src="@/assets/id3.svg" class="avatar-sent me-2"><span style="font-size:xx-small; color:#98A4AE;"> Andrew, 2 hours ago</span></div>
             
             <div class="message received d-flex align-items-center ms-4">
-              <span style="font-size:x-small;">If I don't like something, I'll stay away from it.</span>
+              <span style="font-size:0.75rem;">If I don't like something, I'll stay away from it.</span>
             </div>
             <div class="text-end"><span style="font-size:xx-small; color:#98A4AE">2 hours ago</span></div>
             <div class="message sent d-flex align-items-center justify-content-end">
-              <span style="font-size:x-small;">If I don’t like something, I’ll stay away from it.</span>
+              <span style="font-size:0.75rem;">If I don’t like something, I’ll stay away from it.</span>
             </div>
 
             <div class="align-item-start"><img src="@/assets/id3.svg" class="avatar-sent me-2"><span style="font-size:xx-small; color:#98A4AE"> Andrew, 2 hours ago</span></div>
             <div class="message received d-flex align-items-center ms-4">
-              <span style="font-size:x-small;">I want more detailed information.</span>
+              <span style="font-size:0.75rem;">I want more detailed information.</span>
             </div>
             <div class="text-end"><span style="font-size:xx-small; color:#98A4AE">2 hours ago</span></div> 
             <div class="message sent d-flex align-items-center justify-content-end">
-              <span style="font-size:x-small;">If I don't like something, I'll stay away from it.</span>
+              <span style="font-size:0.75rem;">If I don't like something, I'll stay away from it.</span>
             </div>
             
             <div class="message sent d-flex align-items-center justify-content-end">
-              <span style="font-size:x-small;">They got there early, and they got really good seats.</span>
+              <span style="font-size:0.75rem;">They got there early, and they got really good seats.</span>
             </div>
 
             <div class="align-item-start"><img src="@/assets/id3.svg" class="avatar-sent me-2"><span style="font-size:xx-small; color:#98A4AE"> Andrew, 2 hours ago</span></div>
@@ -317,9 +317,9 @@ li:hover{
 
 }
 
-hover:i{
+i:hover{
 cursor: pointer;
-
+font-weight:bolder;
 }
 
 /* Popup Styles */

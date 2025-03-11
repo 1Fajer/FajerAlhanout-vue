@@ -6,8 +6,8 @@
       </div>
       <div class="col-10">
         <nav-bar />
-        <div class="d-flex justify-content-center mt-3">
-          <v-card class="chat-card">
+        <div class="d-flex mt-3">
+          <v-card class="chat-card rounded">
             <div class="chat-container rounded">
               <div class="row g-0">
                 <div class="col-12">
