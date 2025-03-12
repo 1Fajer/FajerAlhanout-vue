@@ -307,7 +307,7 @@ export default {
 
 li {
   margin-bottom: 1rem;
-  font-size: small;
+  font-size: x-small;
 }
 
 li:hover{
