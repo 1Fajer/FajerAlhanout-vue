@@ -1,20 +1,20 @@
 <template>
   <body class="container-fluid">
-    <div class="row d-flex g-0">
+    <div class="row d-flex">
       <div class="col-2 p-0 m-0 d-flex">
         <side-bar />
       </div>
       <div class="col-10">
         <nav-bar />
         <div class="d-flex mt-3">
-          <v-card class="chat-card rounded">
+          <v-card class="chat-card">
             <div class="chat-container rounded">
               <div class="row g-0">
                 <div class="col-12">
                   <chat-nav class="chat-nav" />
                 </div>
               </div>
-              <div class="row g-0 chat-body shadow-sm">
+              <div class="row g-0 chat-body  rounded shadow-sm">
                 <div class="col-4 d-flex flex-column">
                   <recent-chat class="recent-chat" />
                 </div>
@@ -48,7 +48,4 @@ export default {
   }
 };
 </script>
-<style scoped>
 
-
-</style>

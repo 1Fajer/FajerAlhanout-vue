@@ -232,13 +232,13 @@ export default {
 
 .status-indicator {
   position: absolute;
-  bottom: 0.2rem;
-  right: 0.2rem;
+  bottom: 0;
+  right: 0;
   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
-  background-color: green;
   border: 1px solid white;
+  background: green;
 
 }
 

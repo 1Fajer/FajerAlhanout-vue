@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm rounded">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm rounded">
       <div class="container-fluid d-flex justify-content-between">
         <!-- Chat Brand -->
         <a class="navbar-brand fw-semibold ps-2 " href="#">Chat</a>
@@ -19,6 +19,7 @@
     width: 100%;
     flex: 1;
     display: block; 
+    background: rgb(255, 255, 255);
 
     
   }
