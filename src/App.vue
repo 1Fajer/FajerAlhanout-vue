@@ -14,7 +14,7 @@
                   <chat-nav class="chat-nav" />
                 </div>
               </div>
-              <div class="row g-0 chat-body">
+              <div class="row g-0 chat-body shadow-sm">
                 <div class="col-4 d-flex flex-column">
                   <recent-chat class="recent-chat" />
                 </div>
